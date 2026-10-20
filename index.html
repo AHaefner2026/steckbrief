@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Steckbrief Andreas</title>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --text: #1f1d1a;
+      --muted: #6b665e;
+      --border: #ebe5da;
+      --accent: #4169e1;
+      --accent-soft: #e6ecfc;
+      --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #161512;
+        --card: #211f1b;
+        --text: #f2eee7;
+        --muted: #a39d92;
+        --border: #34302a;
+        --accent: #7393f0;
+        --accent-soft: #1c2647;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.3);
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #161512;
+      --card: #211f1b;
+      --text: #f2eee7;
+      --muted: #a39d92;
+      --border: #34302a;
+      --accent: #7393f0;
+      --accent-soft: #1c2647;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.3);
+    }
+    * { box-sizing: border-box; }
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 76px 16px 32px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 32px;
+      border-top: 4px solid var(--accent);
+    }
+    .avatar {
+      flex: none;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+      font-weight: 700;
+    }
+    h1 { margin: 0; font-size: 2rem; line-height: 1.2; }
+    .subtitle { margin: 4px 0 0; color: var(--muted); font-size: 1.1rem; }
+    .subtitle strong { color: var(--text); font-weight: 600; }
+    .contact { margin-top: 14px; }
+    .contact summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .contact summary::-webkit-details-marker { display: none; }
+    .contact summary::after { content: "▾"; transition: transform .2s; }
+    .contact[open] summary::after { transform: rotate(180deg); }
+    .contact summary:hover { filter: brightness(1.1); }
+    .contact summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    :root[data-theme="dark"] .contact summary { color: #10172e; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .contact summary { color: #10172e; }
+    }
+    .contact dl {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 6px 16px;
+      margin: 14px 0 0;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      text-align: left;
+    }
+    .contact dt { color: var(--muted); }
+    .contact dd { margin: 0; overflow-wrap: anywhere; }
+    .contact a { color: var(--accent); text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+    section { margin-top: 40px; }
+    h2 {
+      font-size: 1.25rem;
+      margin: 0 0 16px;
+    }
+    .about { padding: 24px 32px; margin: 0; }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .project { padding: 24px; }
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .project h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .project p { margin: 0; color: var(--muted); font-size: .95rem; }
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .875rem;
+    }
+    @media (max-width: 700px) {
+      .projects { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      main { padding-top: 72px; }
+      .profile { flex-direction: column; align-items: center; text-align: center; padding: 24px 16px; }
+      .about { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" type="button" aria-label="Dunkelmodus einschalten">🌙</button>
+  <main>
+    <header class="card profile">
+      <div class="avatar" aria-hidden="true">AH</div>
+      <div>
+        <h1>Andreas</h1>
+        <p class="subtitle"><strong>Projektleiter</strong> bei Lichtblick AG</p>
+        <details class="contact">
+          <summary>Kontakt</summary>
+          <!-- HIER ERSETZEN: deine Kontaktdaten -->
+          <dl>
+            <dt>E-Mail</dt>
+            <dd><a href="mailto:andreas@lichtblick-ag.example">andreas@lichtblick-ag.example</a></dd>
+            <dt>Telefon</dt>
+            <dd><a href="tel:+49123456789">+49 123 456789</a></dd>
+            <dt>Ort</dt>
+            <dd>Musterstadt</dd>
+          </dl>
+        </details>
+      </div>
+    </header>
+
+    <section>
+      <h2>Über mich</h2>
+      <!-- HIER ERSETZEN: ein bis zwei Sätze über dich -->
+      <p class="card about">Ich leite Projekte bei der Lichtblick AG und probiere in der KI-Schulung aus, wie mir KI im Arbeitsalltag Zeit spart.</p>
+    </section>
+
+    <section>
+      <h2>Was ich im Kurs mit KI gebaut habe</h2>
+      <div class="projects">
+        <!-- HIER ERSETZEN: Projekt 1 -->
+        <article class="card project">
+          <span class="num">1</span>
+          <h3>KI-gestützte To-do-App</h3>
+          <p>Eine kleine App, die Aufgaben sammelt und nach Dringlichkeit sortiert.</p>
+        </article>
+        <article class="card project">
+          <span class="num">2</span>
+          <h3>Automatisches Dashboard</h3>
+          <p>Liest Daten automatisiert aus dem ERP-Programm.</p>
+        </article>
+        <!-- HIER ERSETZEN: Projekt 3 -->
+        <article class="card project">
+          <span class="num">3</span>
+          <h3>E-Mail-Assistent</h3>
+          <p>Ein Helfer, der Entwürfe für Antworten auf typische Anfragen formuliert.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>KI-Schulung · Tag 14 · Oktober 2026</footer>
+  </main>
+
+  <script>
+    // Dunkelmodus-Schalter: merkt sich die Wahl im Browser
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector('.theme-toggle');
+      var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function isDark() {
+        var theme = root.getAttribute('data-theme');
+        return theme ? theme === 'dark' : media.matches;
+      }
+
+      function updateButton() {
+        var dark = isDark();
+        button.textContent = dark ? '☀️' : '🌙';
+        button.setAttribute('aria-label', dark ? 'Hellmodus einschalten' : 'Dunkelmodus einschalten');
+      }
+
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+      } catch (e) {}
+
+      button.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+        updateButton();
+      });
+
+      media.addEventListener('change', updateButton);
+      updateButton();
+    })();
+  </script>
+</body>
+</html>
